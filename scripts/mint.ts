@@ -8,10 +8,11 @@ const main = async () => {
 
   const contract = FOC__factory.connect(
     process.env.FOC_ADDRESS as string,
-    signer
+    signer,
   );
 
-  const blob = readFileSync('./images/profile.svg', 'utf-8');
+  const svgPath = process.env.SVG_PATH ?? './images/profile.svg';
+  const blob = readFileSync(svgPath, 'utf-8');
   const tx = await contract.mint(blob);
   console.log('tx: ', tx.hash);
   await tx.wait();
