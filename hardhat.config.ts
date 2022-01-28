@@ -21,7 +21,15 @@ const accounts =
   process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [];
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.9',
+  solidity: {
+    version: '0.8.9',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 5000,
+      },
+    },
+  },
   networks: {
     local: {
       url: 'http://localhost:8545',
